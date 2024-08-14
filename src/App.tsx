@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
-import BlogForm from "./components/BlogForm";
+import BlogForm, { Post } from "./components/BlogForm";
 import BlogList from "./components/BlogList";
 
 function App() {
-  const [blogs, setBlogs] = useState<string[]>([]);
+  const [blogs, setBlogs] = useState<Post[]>([]);
 
-  function handleSubmit(text: string) {
-    setBlogs((prevBlogs) => [...prevBlogs, text]);
+  function handleSubmit(post: Post) {
+    setBlogs((prevBlogs) => [...prevBlogs, post]);
   }
 
   return (

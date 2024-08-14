@@ -1,29 +1,43 @@
 import { FormEvent, useState } from "react";
 
-// Våra props ger oss möjligheten att skapa integrationstester.
-interface Props {
-  onSubmit: (text: string) => void;
+export interface Post {
+  id?: number;
+  title: string;
+  content: string;
 }
 
-function BlogForm(props: Props) {
-  const [text, setText] = useState("");
+interface Props {
+  onSubmit: (post: Post) => void;
+}
+
+export default function BlogForm(props: Props) {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    props.onSubmit(text);
+    props.onSubmit({ title, content });
+    setTitle("");
+    setContent("");
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <input
+        name="title"
         type="text"
-        placeholder="enter blog content ..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        placeholder="enter blog title ..."
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
+      <textarea
+        name="content"
+        placeholder="enter blog content ..."
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+      />
+
       <button>Save</button>
     </form>
   );
 }
-
-export default BlogForm;
