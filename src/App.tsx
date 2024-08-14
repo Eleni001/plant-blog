@@ -1,22 +1,21 @@
 import { useState } from "react";
 import "./App.css";
 import BlogForm from "./components/BlogForm";
+import BlogList from "./components/BlogList";
 
 function App() {
   const [blogs, setBlogs] = useState<string[]>([]);
 
+  function handleSubmit(text: string) {
+    setBlogs((prevBlogs) => [...prevBlogs, text]);
+  }
+
   return (
     <>
       <h1>Plant blog for plant lovers</h1>
-      
 
-      <BlogForm onSubmit={(text) => setBlogs([...blogs, text])} />
-
-      <ul>
-        {blogs.map((blog) => (
-          <li key={blog}>{blog}</li>
-        ))}
-      </ul>
+      <BlogForm onSubmit={handleSubmit} />
+      <BlogList blogs={blogs} />
     </>
   );
 }
