@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 export interface Post {
   id?: number;
@@ -8,15 +8,23 @@ export interface Post {
 
 interface Props {
   onSubmit: (post: Post) => void;
+  editPost?: Post;
 }
 
-export default function BlogForm(props: Props) {
+export default function BlogForm({ onSubmit, editPost }: Props) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  useEffect(() => {
+    if (editPost) {
+      setTitle(editPost.title);
+      setContent(editPost.content);
+    }
+  }, [editPost]);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    props.onSubmit({ title, content });
+    onSubmit({ ...editPost, title, content });
     setTitle("");
     setContent("");
   };
