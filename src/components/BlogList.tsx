@@ -10,8 +10,8 @@ export default function BlogList({ blogs, onEdit }: Props) {
     <ul>
       {blogs.map((blog) => (
         <li key={blog.title}>
-          {blog.title}
-          {blog.content}
+          <div>{blog.title}</div>
+          <div>{blog.content}</div>
           <button onClick={() => onEdit(blog)}>Edit</button>
         </li>
       ))}

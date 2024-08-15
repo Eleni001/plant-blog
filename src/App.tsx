@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import BlogForm, { Post } from "./components/BlogForm";
 import BlogList from "./components/BlogList";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [blogs, setBlogs] = useState<Post[]>([]);
@@ -23,6 +24,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <h1>Plant blog for plant lovers</h1>
 
       <BlogForm onSubmit={handleSubmit} editPost={editPost} />
