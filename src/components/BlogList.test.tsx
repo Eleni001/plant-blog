@@ -32,7 +32,6 @@ describe("BlogList", () => {
     expect(
       screen.getByText("Plants that don’t need much sunlight?")
     ).toBeVisible();
-    /*  expect(screen.getAllByRole("listitem")[0].).toEqual(2); */
   });
   it("should call onEdit with the correct post when the Edit button is clicked", () => {
     const testPosts: Post[] = [

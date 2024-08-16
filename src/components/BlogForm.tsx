@@ -1,3 +1,12 @@
+import {
+  VStack,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+  Button,
+  Box
+} from "@chakra-ui/react";
 import { FormEvent, useEffect, useState } from "react";
 
 export interface Post {
@@ -30,22 +39,37 @@ export default function BlogForm({ onSubmit, editPost }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="title"
-        type="text"
-        placeholder="enter blog title ..."
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        name="content"
-        placeholder="enter blog content ..."
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-
-      <button>Save</button>
-    </form>
+    <Box
+      as="form"
+      onSubmit={handleSubmit}
+      padding="4"
+      maxWidth="500px"
+      margin="0 auto"
+    >
+      <VStack spacing="4">
+        <FormControl>
+          <FormLabel>Title</FormLabel>
+          <Input
+            name="title"
+            type="text"
+            placeholder="enter blog title ..."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel>Content</FormLabel>
+          <Textarea
+            name="content"
+            placeholder="enter blog content ..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+        </FormControl>
+        <Button type="submit" colorScheme="teal">
+          Save
+        </Button>
+      </VStack>
+    </Box>
   );
 }

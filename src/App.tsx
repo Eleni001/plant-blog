@@ -1,7 +1,9 @@
+import { Box, Center, Heading } from "@chakra-ui/react";
 import { useState } from "react";
 import "./App.css";
 import BlogForm, { Post } from "./components/BlogForm";
 import BlogList from "./components/BlogList";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -25,10 +27,16 @@ function App() {
   return (
     <>
       <Navbar />
-      <h1>Plant blog for plant lovers</h1>
-
-      <BlogForm onSubmit={handleSubmit} editPost={editPost} />
-      <BlogList blogs={blogs} onEdit={handleEdit} />
+      <Box minH="60vh">
+        <Center p={8}>
+          <Heading as="h1" /* pl="35vw" pt="5vh" */>
+            Plant blog for plant lovers
+          </Heading>
+        </Center>
+        <BlogForm onSubmit={handleSubmit} editPost={editPost} />
+        <BlogList blogs={blogs} onEdit={handleEdit} />
+      </Box>
+      <Footer />
     </>
   );
 }
