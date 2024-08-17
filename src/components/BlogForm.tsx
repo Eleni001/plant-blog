@@ -33,9 +33,11 @@ export default function BlogForm({ onSubmit, editPost }: Props) {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    if(title && content) {
     onSubmit({ ...editPost, title, content });
     setTitle("");
     setContent("");
+    }
   };
 
   return (
@@ -66,7 +68,7 @@ export default function BlogForm({ onSubmit, editPost }: Props) {
             onChange={(e) => setContent(e.target.value)}
           />
         </FormControl>
-        <Button type="submit" colorScheme="teal">
+        <Button type="submit" colorScheme="teal" isDisabled={!title || !content}>
           Save
         </Button>
       </VStack>

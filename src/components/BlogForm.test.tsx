@@ -28,6 +28,62 @@ describe("BlogForm", () => {
       content: "These are the top ten must have plants.",
     });
   });
+
+  it("should not submit a post if title or content is empty", () => {
+    const handleSubmit = vi.fn();
+    render(<BlogForm onSubmit={handleSubmit} />);
+
+    fireEvent.change(screen.getByPlaceholderText("enter blog title ..."), {
+      target: { value: "" },
+    });
+    fireEvent.input(screen.getByPlaceholderText("enter blog content ..."), {
+      target: { value: "These are the top ten must have plants." },
+    });
+    fireEvent.click(screen.getByRole("button"));
+
+    expect(handleSubmit).not.toBeCalled();
+
+    fireEvent.input(screen.getByPlaceholderText("enter blog title ..."), {
+      target: { value: "Must have plants" },
+    });
+    fireEvent.input(screen.getByPlaceholderText("enter blog content ..."), {
+      target: { value: "" },
+    });
+    fireEvent.click(screen.getByRole("button"));
+
+    expect(handleSubmit).not.toBeCalled();
+  });
+
+  it("should disable the submit button if title or content is empty making new post or editing", () => {
+    render(<BlogForm onSubmit={vi.fn()} />);
+
+    const submitButton = screen.getByRole("button");
+
+    fireEvent.input(screen.getByPlaceholderText("enter blog title ..."), {
+      target: { value: "Must have plants" },
+    });
+
+    expect(submitButton).toBeDisabled();
+
+    fireEvent.input(screen.getByPlaceholderText("enter blog content ..."), {
+      target: { value: "These are the top ten must have plants." },
+    });
+
+    expect(submitButton).not.toBeDisabled();
+
+    fireEvent.change(screen.getByPlaceholderText("enter blog title ..."), {
+      target: { value: "" },
+    });
+
+    expect(submitButton).toBeDisabled();
+
+    fireEvent.change(screen.getByPlaceholderText("enter blog content ..."), {
+      target: { value: "" },
+    });
+
+    expect(submitButton).toBeDisabled();
+  });
+
   it("should pre-populate the form fields with the editPost data", () => {
     const editPost: Post = {
       id: 1,
