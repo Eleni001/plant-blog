@@ -27,12 +27,13 @@ describe("BlogList", () => {
 
     expect(screen.getAllByRole("listitem").length).toEqual(2);
     expect(
-      screen.getByText("How often should you water your plant?").textContent
+      screen.getByText("How often should you water your plant?")
     ).toBeVisible();
     expect(
-      screen.getByText("Plants that don’t need much sunlight?")
+      screen.getByText("Plants that don´t need much sunlight?")
     ).toBeVisible();
   });
+
   it("should call onEdit with the correct post when the Edit button is clicked", () => {
     const testPosts: Post[] = [
       {

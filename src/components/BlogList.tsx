@@ -1,4 +1,4 @@
-import { VStack, Heading, Button, Text } from "@chakra-ui/react";
+import { Button, Heading, Text, VStack } from "@chakra-ui/react";
 import { Post } from "./BlogForm";
 
 interface Props {
@@ -8,12 +8,10 @@ interface Props {
 
 export default function BlogList({ blogs, onEdit }: Props) {
   return (
-    <VStack p="5vh" pl="20vw" spacing="2" alignItems="flex-start">
-      {blogs.length > 0 && (
-        <Heading as="h2">What we write about</Heading>
-      )}
+    <VStack as="ul" p="5vh" pl="20vw" spacing="2" alignItems="flex-start">
+      {blogs.length > 0 && <Heading as="h2">What we write about</Heading>}
       {blogs.map((blog) => (
-        <VStack key={blog.title} spacing="1" alignItems="flex-start">
+        <VStack as="li" key={blog.title} spacing="1" alignItems="flex-start">
           <Text as="h3" fontSize="lg" fontWeight="bold">
             {blog.title}
           </Text>
