@@ -1,50 +1,20 @@
-# React + TypeScript + Vite
+# Plant blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduktion
 
-Currently, two official plugins are available:
+Detta är ett skolprojekt i testning kurs på Medieinstitutet Göteborg. Syftet med detta spelprojekt är att skapa en liten webbapplikation med minst 2 komponenter som enhetstestas medan integrationen mellan komponenterna också integrationstestas.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Just detta projekt är ett React Vite applikation för växtblogg som består av fyra komponenter varav Navbar, Footer, BlogForm och BlogList. Blog formuläret innehåller en inputfält för titel, textruta för brödtext och en sparaknapp. Precis som namnet antyder så är blogglistan en lista med de skapade posterna och med tillhörande editeringsknapp.
+Till testerna har `React testing library` och `vitest` användts som testar komponenteras funktionalitet och integrationen mellan dem.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Kör kommandot `npm install` för att installera beroenden
 
-- Configure the top-level `parserOptions` property like this:
+## Starta projektet
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Kör kommandot `npm run dev`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Köra testerna
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Kör kommandot `npm run test`
