@@ -18,8 +18,8 @@ describe("App", () => {
     });
 
     fireEvent.click(screen.getByRole("button"));
-    expect( await screen.findByText(postTitle));
-    
+    expect(await screen.findByText(postTitle));
+
     expect(screen.getByText(postContent));
   });
 
@@ -42,7 +42,7 @@ describe("App", () => {
     });
     const postContent2 = "Depending on the plant and the placement ...";
     fireEvent.input(screen.getByPlaceholderText("enter blog content ..."), {
-      target: { value: postContent2},
+      target: { value: postContent2 },
     });
     fireEvent.click(screen.getByText("Save"));
 
@@ -71,5 +71,31 @@ describe("App", () => {
     fireEvent.click(editButtons[0]);
 
     expect(handleEdit).toHaveBeenCalledWith(testPosts[0]);
+  });
+
+  it("should be possible to edit a post", async () => {
+    render(<App />);
+
+    const postTitle = "Must have plants";
+    fireEvent.input(screen.getByPlaceholderText("enter blog title ..."), {
+      target: { value: postTitle },
+    });
+    const postContent = "These are the top ten must have plants.";
+    fireEvent.input(screen.getByPlaceholderText("enter blog content ..."), {
+      target: { value: postContent },
+    });
+    fireEvent.click(screen.getByLabelText("save"));
+
+    fireEvent.click(screen.getByText("Edit"));
+    fireEvent.input(screen.getByPlaceholderText("enter blog title ..."), {
+      target: { value: "Updated Title" },
+    });
+    fireEvent.input(screen.getByPlaceholderText("enter blog content ..."), {
+      target: { value: "Updated Content" },
+    });
+    fireEvent.click(screen.getByLabelText("save"));
+
+    expect(await screen.findByText("Updated Title")).toBeInTheDocument();
+    expect(screen.getByText("Updated Content")).toBeInTheDocument();
   });
 });

@@ -1,11 +1,12 @@
 import {
-  VStack,
+  Box,
+  Button,
   FormControl,
   FormLabel,
   Input,
   Textarea,
-  Button,
-  Box
+  VStack,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { FormEvent, useEffect, useState } from "react";
 
@@ -33,21 +34,25 @@ export default function BlogForm({ onSubmit, editPost }: Props) {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if(title && content) {
-    onSubmit({ ...editPost, title, content });
-    setTitle("");
-    setContent("");
+    if (title && content) {
+      onSubmit({ ...editPost, title, content });
+      setTitle("");
+      setContent("");
     }
   };
 
   return (
+    
     <Box
       as="form"
       onSubmit={handleSubmit}
       padding="4"
       maxWidth="500px"
       margin="0 auto"
-    >
+      rounded={'lg'}
+      bg={useColorModeValue('rgb(195, 206, 232)', 'gray.700')}
+      boxShadow={'lg'}
+      p={8}>
       <VStack spacing="4">
         <FormControl>
           <FormLabel>Title</FormLabel>
@@ -68,7 +73,12 @@ export default function BlogForm({ onSubmit, editPost }: Props) {
             onChange={(e) => setContent(e.target.value)}
           />
         </FormControl>
-        <Button type="submit" colorScheme="teal" isDisabled={!title || !content}>
+        <Button
+          type="submit"
+          aria-label="save"
+          colorScheme="teal"
+          isDisabled={!title || !content}
+        >
           Save
         </Button>
       </VStack>

@@ -18,7 +18,7 @@ export default function BlogList({ blogs, onEdit }: Props) {
           <Text as="p" fontSize="md">
             {blog.content}
           </Text>
-          <Button size="sm" onClick={() => onEdit(blog)}>
+          <Button size="sm" colorScheme="teal" onClick={() => onEdit(blog)}>
             Edit
           </Button>
         </VStack>
